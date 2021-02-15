@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta http-equiv="content-type" content="text/html"/>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" media="print" href="<?php echo e(base_url('resources/css/own/pdf.css')); ?>"/>
+	<link rel="shortcut icon" href="<?php echo e(base_url('resources/img/logos/favicon.ico')); ?>" type="image/
+	x-icon"/>
+	<script src="<?php echo e(base_url('resources/plugins/jQuery/jquery-2.2.3.min.js')); ?>">
+	</script>
+	<script src="<?php echo e(base_url('resources/plugins/moment/moment.min.js')); ?>"></script>
+	<script src="<?php echo e(base_url('resources/plugins/moment/es.js')); ?>"></script>
+	<script type="text/javascript">
+		$(document).on("ready", function(){
+			var fecha = $("#fechaCasoInicio").val();		
+			var fechaFormat = moment(fecha).locale("es").format('LL');
+			$("#fechaCasoFormat").html(fechaFormat)
+		});	
+	</script>
+	<title>Inspesoft | <?php echo e($title); ?></title>
+	<head>
+		<body>
+			<center>
+				<table>
+					<tr>
+						<td align="center">
+							<table>
+								<tr align="center">
+									<td width="50">
+										<img src="<?php echo e(base_url('resources/img/logos/strc-160.png')); ?>" width="85">
+									</td>
+									<td width="740">
+										<h3>ALCALDIA MUNICIPAL<br>
+											SECRETARIA DE GOBIERNO TRANSITO Y TRASNPORTE <br>
+											SANTA ROSA DE CABAL<br>
+										</td>
+										<td width="30"></td>
+									</tr>
+								</table>		
+							</td>
+						</tr>
+						<tr align="center">
+							<td width="40">
+								<h3>FORMULARIO DE INFORMACIÓN DE COMPORTAMIENTO CONTRARIO A <br> LA CONVIVENCIA.</h3>
+							</td>	
+						</tr>	
+						<tr>		
+							<td>
+								<font face="arial" size="3" color="black">
+									<br>
+									<table>
+										<tr>
+											<td width="35">
+												<input type="hidden" id="fechaCasoInicio" value="<?php echo e($casos[0]->fecha_inicio); ?>">
+											</td>
+											<td width="750">
+												<div>CASO: <?php echo e($casos[0]->id_casos); ?></div>
+												<div id="fechaCasoFormat"></div>
+												<br><br>											
+												<?php foreach($casos as $caso): ?>
+												<?php if($caso->tipo_involucrados == 'DENUNCIANTE'): ?>
+												<div>NOMBRE DEL DENUNCIANTE: <?php echo e($caso->nombre_persona); ?></div>
+												<div>CEDULA DE CIUDADANIA: <?php echo e($caso->cedula ==''?'NO':$caso->cedula); ?></div>
+												<div>DIRECCION: <?php echo e($caso->direccion ==''?'NO':$caso->direccion); ?></div>
+												<div>TELEFONO: <?php echo e($caso->telefono ==''?'NO':$caso->telefono); ?></div>
+												<?php endif; ?>											
+												<?php endforeach; ?>
+
+												<?php if($denunciantes == $ofendidos && $denunciantes > 1 ): ?>
+												<div>OFENDIDO: MISMOS DENUNCIANTES</div>
+												<?php elseif($denunciantes == $ofendidos): ?>
+												<div>OFENDIDO: MISMO DENUNCIANTE</div>
+												<?php else: ?>											
+												<?php foreach($casos as $caso): ?>
+												<?php if($caso->tipo_involucrados == 'OFENDIDO' || $caso->subtipo == 'OFENDIDO'): ?>
+												<div>NOMBRE DEL OFENDIDO: <?php echo e($caso->nombre_persona); ?></div>
+												<div>CEDULA DE CIUDADANIA: <?php echo e($caso->cedula ==''?'NO':$caso->cedula); ?></div>
+												<div>DIRECCION: <?php echo e($caso->direccion ==''?'NO':$caso->direccion); ?></div>
+												<div>TELEFONO: <?php echo e($caso->telefono ==''?'NO':$caso->telefono); ?></div>
+												<?php endif; ?>											
+												<?php endforeach; ?>
+												<?php endif; ?>
+
+												<?php foreach($casos as $caso): ?>
+												<?php if($caso->tipo_involucrados == 'CONTRAVENTOR'): ?>
+												<div>CONTRAVENTOR: <?php echo e($caso->nombre_persona); ?></div>
+												<div>CEDULA DE CIUDADANIA: <?php echo e($caso->cedula ==''?'NO':$caso->cedula); ?></div>
+												<div>DIRECCION: <?php echo e($caso->direccion ==''?'NO':$caso->direccion); ?></div>
+												<div>TELEFONO: <?php echo e($caso->telefono ==''?'NO':$caso->telefono); ?></div>
+												<?php endif; ?>											
+												<?php endforeach; ?>												
+											</td>
+											<td width="30"></td>
+										</tr>
+									</table>
+								</font>
+							</td>
+						</tr>
+						<tr>
+							<table>
+								<tr>
+									<td width="40"></td>
+									<td width="740">
+										<font face="arial" size="3" color="black">
+											<p align="justify"> 
+												El suscrito Inspector le tomó el juramento de rigor de conformidad con lo  dispuesto en el articulo 442 del Código de Procedimiento Penal prometiendo decir toda la verdad en su denuncia.
+											</p><br>
+											<div>ASUNTO: <?php echo e($casos[0]->asunto); ?></div><br>
+											<p align="justify">HECHOS: <?php echo e($casos[0]->hechos); ?></p><br>
+										</font>
+									</td>
+									<td width="40"></td>
+								</tr>
+							</table>							
+						</tr>
+						<tr>
+							<table>
+								<tr>
+									<td width="40"></td>
+									<td width="740">
+										<font face="arial" size="3" color="black">											
+											<div><?php echo e($casos[0]->asunto); ?></div><br>
+											<p align="justify">HECHOS: <?php echo e($casos[0]->hechos); ?></p><br>
+										</font>
+									</td>
+									<td width="40"></td>
+								</tr>
+							</table>							
+						</tr>
+					</table>
+
+				</font>
+				<input name="Imprimir" type="submit" value="Imprimir" onclick="this.style.visibility='hidden' ; print(); this.style.visibility=''"/>
+				<br>
+			</center>
+
+

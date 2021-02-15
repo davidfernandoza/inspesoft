@@ -1,0 +1,94 @@
+<?php $__env->startSection('content'); ?>
+	
+	<section class="content-header">
+		<h1 class="encuadre">
+			Usuarios
+			<small>Listado</small>
+		</h1>
+
+		<?php /* Menu Routes */ ?>
+		<ol class="breadcrumb encuadre">
+			<li><a href="<?php echo e(base_url('Inicio')); ?>"><i class="fa fa-fw fa-th"></i>Inicio</a></li>
+			<li class="active">Usuarios</li>
+		</ol><?php /* End Menu Routes */ ?>
+	</section>
+
+	<section class="content">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="box">
+					<div class="box-header">		
+						<div class="boton">
+							<a type="button" href="<?php echo e(base_url('Usuarios/Crear')); ?>" class="btn btn-success fa fa-plus">
+								<spam class="nuevo"> Nuevo</spam></a>
+							</div>
+
+							<br>
+							<div class="box-body">
+								<div class="table-responsive">
+									<table id="tb-tabla" class="table table-bordered table-striped">
+										<thead>
+											<tr>
+												<th>CC</th>
+												<th>Nombres</th>
+												<th>Apellidos</th>
+												<th>Correo electrónico</th>
+												<th>Rol</th>
+												<th>Estado</th>
+												<th>Acciones</th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php foreach($usuarios as $usuario): ?>
+											<tr align="center">
+												<td><?php echo e($usuario->id); ?></td>
+												<td><?php echo e($usuario->primer_nombre.' '.$usuario->segundo_nombre); ?></td>
+												<td><?php echo e($usuario->primer_apellido.' '.$usuario->segundo_apellido); ?></td>
+												<td><?php echo e($usuario->email); ?></td>
+												<td><?php echo e($usuario->rol); ?></td>
+												<td><?php echo e($usuario->estado); ?></td>
+												<td>
+													<center>
+														<table>
+															<tr>
+																<td>
+																	<a href="<?php echo e(base_url('Usuarios/Editar/'.$usuario->id)); ?>" class='btn btn-sm btn-warning fa fa-edit' title='Editar'></a>
+																</td>
+																<td>
+																	<?php if($usuario->estado == 'ACTIVO'): ?>
+																	<a href="<?php echo e(base_url('Usuarios/Eliminar/'.$usuario->id)); ?>" class='btn btn-sm btn-danger fa fa-trash' title='Eliminar'></a>
+																	<?php else: ?>
+																	<a href="<?php echo e(base_url('Usuarios/Activar/'.$usuario->id)); ?>" class='btn btn-sm btn-success fa fa-reply' title='Activar'></a>
+																	<?php endif; ?>
+																</td>
+															</tr>
+														</table>
+													</center>                         
+												</td>
+											</tr>
+											<?php endforeach; ?>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>					
+					</div>
+				</div>
+			</div>		
+		</section>		
+<?php $__env->stopSection(); ?>
+
+
+
+
+
+
+
+
+
+
+					
+
+   
+
+<?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

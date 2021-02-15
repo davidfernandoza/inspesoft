@@ -1,0 +1,128 @@
+<?php $__env->startSection('content'); ?>
+<section class="content-header">
+  <h1 class="encuadre">
+    Editar
+    <small>Comparendo</small>
+  </h1>
+  <ol class="breadcrumb encuadre">
+    <li><a href="<?php echo e(base_url('Inicio')); ?>"><i class="fa fa-fw fa-th"></i>Inicio</a></li>
+    <li><a href="<?php echo e(base_url('Comparendos')); ?>">Comparendos</a></li>
+    <li>Editar Comparendo</li>
+  </ol>
+</section>
+
+<section class="content">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="box box-header">
+        <br>
+        <div class="box-body">  
+          <form id="formID" role="form" action="<?php echo e(base_url('Comparendos/Actualizar')); ?>" method="POST" autocomplete="off">
+
+            <?php /* ID */ ?>
+            <div class="form-group">
+              <label class="control-label" for="inputError"></i>Numero de comparendo (*)</label>
+              <input type="text" class="form-control" name="new_id" placeholder="Numero de comparendo ..." 
+              value="<?php echo e(isset($alertas[0]->Error) ? $old[0]->old['new_id'] : $comparendos->id); ?>" required>
+              <input type="hidden" name="id" value="<?php echo e($comparendos->id); ?>">
+            </div>
+
+            <?php /* Fecha */ ?>
+            <div class="form-group">
+              <label>Fecha (*)</label>
+              <div class="input-group date">
+                <div class="input-group-addon">
+                  <i class="fa fa-calendar"></i>
+                </div>
+                <input type="text" class="form-control pull-right" id="datepicker" name="fecha" value="<?php echo e(isset($alertas[0]->Error) ? $old[0]->old['fecha'] : $comparendos->fecha); ?>" required
+                placeholder="AAAA-MM-DD">
+              </div>
+            </div>
+
+            <?php /* Articulo */ ?>
+            <div class="form-group">
+              <label class="control-label" for="inputError"></i>Articulo (*)</label>
+              <textarea class="form-control" name="articulo" rows="8" placeholder="Articulo ..." required><?php echo e(isset($alertas[0]->Error) ? $old[0]->old['articulo'] : $comparendos->articulo); ?></textarea>
+            </div>
+
+            <?php /* Tipo */ ?>
+            <div id="personasAdd2" class="form-group">
+              <label>Tipo (*)</label>
+              <select  name="tipo" class="form-control" style="width: 100%;" required>
+                <option <?php echo e($tipo[0]); ?> value="1">1</option>
+                <option <?php echo e($tipo[1]); ?> value="2">2</option>
+                <option <?php echo e($tipo[2]); ?> value="3">3</option>
+                <option <?php echo e($tipo[3]); ?> value="4">4</option>
+              </select>   
+            </div>
+            
+            <?php /* Numeral */ ?>
+            <div class="form-group">
+              <label class="control-label" for="inputError"></i>Numeral (*)</label>
+              <input type="text" class="form-control" name="numeral" placeholder="Numeral ..." 
+              value="<?php echo e(isset($alertas[0]->Error) ? $old[0]->old['numeral'] : $comparendos->numeral); ?>" required>
+            </div>
+
+            <?php /* Literal */ ?>
+            <div class="form-group">
+              <label class="control-label" for="inputError"></i>Literal </label>
+              <input type="text" class="form-control" name="literal" placeholder="Literal ..." 
+              value="<?php echo e(isset($alertas[0]->Error) ? $old[0]->old['literal'] : $comparendos->literal); ?>">
+            </div>
+
+            <?php /* Multa */ ?>
+            <div class="form-group">
+              <label class="control-label" for="inputError"></i>Multa</label>
+              <input type="number" class="form-control" name="multa" placeholder="Multa ..." 
+              value="<?php echo e(isset($alertas[0]->Error) ? $old[0]->old['multa'] : $comparendos->multa); ?>" >
+            </div>
+
+
+            <?php /* N° Folio */ ?>
+            <div class="form-group">
+              <label class="control-label" for="inputError"></i>Numero de Folio</label>
+              <input type="text" class="form-control" name="new_folio" placeholder="N° Folio ..." value="<?php echo e(isset($alertas[0]->Error) ? $old[0]->old['new_folio'] : $comparendos->num_folios); ?>">
+              <input type="hidden" name="num_folio" value="<?php echo e($comparendos->num_folios); ?>">
+            </div>
+
+            <?php /* N° Caja */ ?>
+            <div class="form-group">
+              <label class="control-label" for="inputError"></i>Numero de Caja</label>
+              <input type="text" class="form-control" name="num_caja" placeholder="N° Caja ..." value="<?php echo e(isset($alertas[0]->Error) ? $old[0]->old['num_caja'] : $comparendos->num_caja); ?>">
+            </div>
+
+            <?php /* Estado */ ?>
+            <div id="personasAdd2" class="form-group">
+              <label>Estado (*)</label>
+              <select  name="estado" class="form-control" style="width: 100%;" required>
+                <option <?php echo e($estado[0]); ?> value="ACEPTADO">ACEPTADO</option>
+                <option <?php echo e($estado[1]); ?> value="APELADO">APELADO</option>                
+              </select>   
+            </div>
+
+
+            <?php /* Botones  */ ?>
+            <div class="form-group">
+              <font size="2">Los campos marcados con (*) son obligatorios</font>
+            </div>
+            <div class="form-group">
+              <table align="center" class="table table-bordered text-center">
+                <tr>
+                  <td width="250">
+                    <button type="submit" name="actualizar" class="btn btn-block btn-success btn-lg">Actualizar</button>
+                  </form>
+                </td>
+                <td width="250">
+                  <a href="<?php echo e(base_url('Comparendos')); ?>" class="btn btn-block btn-danger btn-lg">Cancelar</a>
+                </td>
+              </tr>
+            </table>
+          </div>  
+        </div>
+      </div>
+    </div>
+  </section>  
+  <?php $__env->stopSection(); ?>
+
+
+<?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

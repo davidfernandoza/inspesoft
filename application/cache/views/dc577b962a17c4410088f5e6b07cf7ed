@@ -1,0 +1,52 @@
+<?php $__env->startSection('content'); ?>
+
+<section class="content-header">
+  <ol class="breadcrumb encuadre">
+    <li><a href="<?php echo e(base_url('Inicio')); ?>"><i class="fa fa-fw fa-th"></i>Inicio</a></li>
+    <li><a href="<?php echo e(base_url('Eventos')); ?>">Eventos</a></li>
+    <li>Ver Evento</li>
+  </ol>
+</section>
+<br>
+<section class="invoice">
+  <div class="row">
+    <div class="col-xs-12">
+      <h2 class="page-header">
+        <i class="fa fa-calendar"></i> Detalles del evento 
+      </h2>
+    </div>
+  </div>
+  <div class="row invoice-info">
+    <div class="col-sm-6 invoice-col">
+    	<strong>Título:</strong>
+      <br> 
+      <span><?php echo e($eventos->title); ?></span>
+      <br><br>
+      <strong>Id:</strong>
+      <br>
+      <span><?php echo e($eventos->id); ?></span>
+      <br><br>
+      <strong>Fecha y hora:</strong>
+      <br> 
+      <span id="fechaYhoraMoment"><?php echo e($eventos->start); ?></span>
+      <br><br>
+      <?php if($eventos->descripcion != null): ?>
+      <strong>Descripción:</strong>
+      <br> 
+      <span><?php echo e($eventos->descripcion); ?></span>
+      <br><br>
+      <?php endif; ?>
+      <?php if($eventos->casos_id != null): ?>
+      <strong>Caso:</strong>
+      <br> 
+      <span><a href="<?php echo e(base_url('Casos/Ver/'.$eventos->casos_id)); ?>"><?php echo e($eventos->casos_id); ?></a></span>
+      <?php elseif($eventos->comparendos_id != null): ?>
+      <strong>Comparendo:</strong>
+      <br> 
+      <span><a href="<?php echo e(base_url('Comparendos/Ver/'.$eventos->comparendos_id)); ?>"><?php echo e($eventos->comparendos_id); ?></a></span>
+      <?php endif; ?>
+    </div>    
+</div>
+</section> 
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

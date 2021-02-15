@@ -1,0 +1,131 @@
+@extends('layouts.app')
+
+@section('content')
+<section class="content-header">
+  <h1 class="encuadre">
+    Actualizar
+    <small>Comparendo</small>
+  </h1>
+  <ol class="breadcrumb encuadre">
+    <li><a href="{{base_url('Inicio')}}"><i class="fa fa-fw fa-th"></i>Inicio</a></li>
+    <li><a href="{{base_url('Comparendos')}}">Comparendos</a></li>
+    <li>Actualizar Comparendo</li>
+  </ol>
+</section>
+
+<section class="content">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="box box-header">
+        <br>
+        <div class="box-body">  
+          <form id="formID" role="form" action="{{base_url('Comparendos/Actualizar')}}" method="POST" autocomplete="off">
+
+            {{-- ID --}}
+            <div class="form-group">
+              <label class="control-label" for="inputError"></i>Numero de comparendo (*)</label>
+              <input type="text" class="form-control" name="new_id" placeholder="Numero de comparendo ..." 
+              value="{{isset($alertas[0]->Error) ? $old[0]->old['new_id'] : $comparendos->id}}" required>
+              <input type="hidden" name="id" value="{{$comparendos->id}}">
+            </div>
+
+            {{-- Fecha --}}
+            <div class="form-group">
+              <label>Fecha (*)</label>
+              <div class="input-group date">
+                <div class="input-group-addon">
+                  <i class="fa fa-calendar"></i>
+                </div>
+                <input type="text" class="form-control pull-right" id="datepicker" name="fecha" value="{{isset($alertas[0]->Error) ? $old[0]->old['fecha'] : $comparendos->fecha}}" required
+                placeholder="AAAA-MM-DD">
+              </div>
+            </div>
+
+            {{-- Articulo --}}
+            <div class="form-group">
+              <label class="control-label" for="inputError"></i>Articulo (*)</label>
+              <textarea class="form-control" name="articulo" rows="8" placeholder="Articulo ..." required>{{isset($alertas[0]->Error) ? $old[0]->old['articulo'] : $comparendos->articulo}}</textarea>
+            </div>
+
+            {{-- Tipo --}}
+            <div id="personasAdd2" class="form-group">
+              <label>Tipo (*)</label>
+              <select  name="tipo" class="form-control" style="width: 100%;" required>
+                <option {{$tipo[0]}} value="1">1</option>
+                <option {{$tipo[1]}} value="2">2</option>
+                <option {{$tipo[2]}} value="3">3</option>
+                <option {{$tipo[3]}} value="4">4</option>
+              </select>   
+            </div>
+            
+            {{-- Numeral --}}
+            <div class="form-group">
+              <label class="control-label" for="inputError"></i>Numeral (*)</label>
+              <input type="text" class="form-control" name="numeral" placeholder="Numeral ..." 
+              value="{{isset($alertas[0]->Error) ? $old[0]->old['numeral'] : $comparendos->numeral}}" required>
+            </div>
+
+            {{-- Literal --}}
+            <div class="form-group">
+              <label class="control-label" for="inputError"></i>Literal </label>
+              <input type="text" class="form-control" name="literal" placeholder="Literal ..." 
+              value="{{isset($alertas[0]->Error) ? $old[0]->old['literal'] : $comparendos->literal}}">
+            </div>
+
+            {{-- Multa --}}
+            <div class="form-group">
+              <label class="control-label" for="inputError"></i>Multa</label>
+              <input type="number" class="form-control" name="multa" placeholder="Multa ..." 
+              value="{{isset($alertas[0]->Error) ? $old[0]->old['multa'] : $comparendos->multa}}" >
+            </div>
+
+
+            {{-- N° Folio --}}
+            <div class="form-group">
+              <label class="control-label" for="inputError"></i>Numero de Folio</label>
+              <input type="text" class="form-control" name="new_folio" placeholder="N° Folio ..." value="{{isset($alertas[0]->Error) ? $old[0]->old['new_folio'] : $comparendos->num_folios}}">
+              <input type="hidden" name="num_folio" value="{{$comparendos->num_folios}}">
+            </div>
+
+            {{-- N° Caja --}}
+            <div class="form-group">
+              <label class="control-label" for="inputError"></i>Numero de Caja</label>
+              <input type="text" class="form-control" name="num_caja" placeholder="N° Caja ..." value="{{isset($alertas[0]->Error) ? $old[0]->old['num_caja'] : $comparendos->num_caja}}">
+            </div>
+
+            {{-- Estado --}}
+
+            <div id="personasAdd2" class="form-group">
+              <label>Estado (*)</label>
+              <select  name="estado" class="form-control" style="width: 100%;" required>
+                <option {{$estado[0]}} value="ACEPTADO">ACEPTADO</option>
+                <option {{$estado[1]}} value="APELADO">APELADO</option>
+                <option {{$estado[2]}} value="CONTRA">FALLO EN CONTRA</option>
+                <option {{$estado[3]}} value="FAVOR">FALLO A FAVOR</option>                   
+              </select>   
+            </div>
+
+
+            {{-- Botones  --}}
+            <div class="form-group">
+              <font size="2">Los campos marcados con (*) son obligatorios</font>
+            </div>
+            <div class="form-group">
+              <table align="center" class="table table-bordered text-center">
+                <tr>
+                  <td width="250">
+                    <button type="submit" name="actualizar" class="btn btn-block btn-success btn-lg">Actualizar</button>
+                  </form>
+                </td>
+                <td width="250">
+                  <a href="{{base_url('Comparendos')}}" class="btn btn-block btn-danger btn-lg">Cancelar</a>
+                </td>
+              </tr>
+            </table>
+          </div>  
+        </div>
+      </div>
+    </div>
+  </section>  
+  @endsection
+

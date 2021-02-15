@@ -1,0 +1,98 @@
+<?php $__env->startSection('content'); ?>
+
+<section class="content-header">
+	<h1 class="encuadre">
+		Audiencias
+		<small>Listado</small>
+	</h1>
+
+	<?php /* Menu Routes */ ?>
+	<ol class="breadcrumb encuadre">
+		<li><a href="<?php echo e(base_url('Inicio')); ?>"><i class="fa fa-fw fa-th"></i>Inicio</a></li>
+		<li class="active">Audiencias</li>
+	</ol><?php /* End Menu Routes */ ?>
+</section>
+
+<section class="content">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="box">
+				<div class="box-header">		
+					<div class="boton">
+						<a type="button" href="<?php echo e(base_url('Audiencias/Crear')); ?>" class="btn btn-success fa fa-plus">
+							<spam class="nuevo"> Nuevo</spam></a>
+						</div>
+
+						<br>
+						<div class="box-body">
+							<div class="table-responsive">
+								<table id="tb-tabla" class="table table-bordered table-striped">
+									<thead>
+										<tr>
+											<th>Numero de audiencia</th>
+											<th>Titulo</th>
+											<th>Caso</th>	
+											<th>Comparendo</th>
+											<th>Fecha y hora</th>																		
+											<th>Acciones</th>
+										</tr>
+									</thead>
+									<tbody>
+										<?php foreach($audiencias as $audiencia): ?>
+										<tr align="center">
+											<td>
+												<?php echo e($audiencia->id); ?>
+
+											</td>
+											<td>
+												<?php echo e($audiencia->title); ?>
+
+											</td>
+											<td>
+												<a href="<?php echo e(base_url('Casos/Ver/'.$audiencia->casos_id)); ?>"><?php echo e($audiencia->casos_id); ?></a>
+											</td>
+											<td>
+												<a href="<?php echo e(base_url('Comparendos/Ver/'.$audiencia->comparendos_id)); ?>"><?php echo e($audiencia->comparendos_id); ?></a>
+											</td>
+											<td>
+												<?php echo e($audiencia->start); ?>
+
+											</td>											
+											<td>
+												<table>
+													<tr>
+														<td>
+															<a href="<?php echo e(base_url('Audiencias/Ver/'.$audiencia->id)); ?>" class='btn btn-sm btn-info fa fa-eye' title='Ver'></a>
+															<?php if($auth[0]->Rol == "ADMINISTRADOR"): ?>     
+															<a href="<?php echo e(base_url('Audiencias/Editar/'.$audiencia->id)); ?>" class='btn btn-sm btn-warning fa fa-edit' title='Editar Detalles'></a>
+															<?php endif; ?>
+														</td>														
+													</table>
+												</td>
+											</tr>
+											<?php endforeach; ?>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>					
+					</div>
+				</div>
+			</div>		
+		</section>		
+		<?php $__env->stopSection(); ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,0 +1,240 @@
+<?php $__env->startSection('content'); ?>
+
+<section class="content-header">
+  <ol class="breadcrumb encuadre">
+    <li><a href="<?php echo e(base_url('Inicio')); ?>"><i class="fa fa-fw fa-th"></i>Inicio</a></li>
+    <li><a href="<?php echo e(base_url('Casos')); ?>">Casos</a></li>
+    <li>Ver Caso</li>
+  </ol>
+</section>
+<br>
+<section class="invoice">
+  <div class="row">
+    <div class="col-xs-12">
+      <h2 class="page-header">
+        <i class="fa fa  fa-balance-scale"></i> Caso: <?php echo e($casos[0]->id_casos); ?>
+
+        <span class="pull-right"><strong><?php echo e($casos[0]->estado); ?></strong></span>
+
+      </h2>
+    </div>
+  </div>
+  <div class="row invoice-info">
+    <div class="col-sm-6 invoice-col">
+      <strong>Asunto</strong>
+      <br>
+      <span><?php echo e($casos[0]->asunto); ?></span>
+      <br><br>
+      <strong>Hechos</strong>
+      <br> 
+      <span><?php echo e($casos[0]->hechos); ?></span>
+    </div>    
+    <div class="col-sm-1 invoice-col">
+    </div>
+    <div class="col-sm-5 invoice-col">
+
+      <div class="table-responsive">
+       <h4>Información</h4>
+       <table class="table">
+         <tr>
+          <th><b>Numero de caso:</b></th>
+          <td><?php echo e($casos[0]->id_casos); ?></td>
+        </tr> 
+        <tr>
+          <th><b>Fecha de inicio:</b></th>
+          <td><span id="fechaMoment"><?php echo e($casos[0]->fecha_inicio); ?></span></td>
+        </tr>
+        <?php if($casos[0]->fecha_cierre != "0000-00-00"): ?>
+        <tr>
+          <th><b>Fecha de cierre:</b></th>
+          <td><span id="fechaMoment2"><?php echo e($casos[0]->fecha_cierre); ?></span></td>
+        </tr>
+        <?php endif; ?>
+        <tr>
+          <th><b>Numero de folio:</b></th>
+          <td><?php echo e($casos[0]->num_folios); ?></td>
+        </tr>
+        <tr>
+          <th><b>Numero de caja:</b></th>
+          <td><?php echo e($casos[0]->num_caja); ?></td>
+        </tr>
+        <tr>
+          <th><b>Acciones:</b></th>
+          <td>
+            <?php if($casos[0]->estado == 'ACTIVO'): ?>
+            <?php if($auth[0]->Rol == "ADMINISTRADOR"): ?>                    
+            <a href="<?php echo e(base_url('Casos/Editar/'.$casos[0]->id_casos)); ?>" class='btn btn-sm btn-warning fa fa-edit' title='Editar'></a>                             
+            <?php endif; ?> 
+            <?php if($fallos == NULL || $fallos[0]->tipo != 'PRIMERA INSTANCIA'): ?>
+            <a href="<?php echo e(base_url('Fallos/Crear/'.$casos[0]->id_casos)); ?>" class='btn btn-sm btn-danger fa  fa-legal' title='Fallo'></a>       
+            <?php else: ?>
+            <a class='btn btn-sm btn-danger fa  fa-legal' title='Fallo' disabled></a> 
+            <?php endif; ?>     
+            <?php else: ?>
+            <?php if($auth[0]->Rol == "ADMINISTRADOR"): ?>                                           
+            <a class='btn btn-sm btn-warning fa fa-edit' title='Editar' disabled></a>         
+            <?php endif; ?>            
+            <a class='btn btn-sm btn-danger fa  fa-legal' title='Fallo' disabled></a>
+            <?php endif; ?>                                                       
+            <a href="<?php echo e(base_url('Imprimir/'.$casos[0]->id_casos)); ?>" class='btn btn-sm btn-primary fa  fa-print' title='Imprimir' target="_blank"></a>                                 
+          </td>
+        </tr>     
+      </table>
+    </div>
+  </div>
+</div>
+<br>
+<?php if($casos[0]->id_personas != NULL): ?>
+<h4><b>Involucrados</b></h4>
+<hr>
+<div class="row">
+  <div class="col-xs-12 table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Cedula</th>
+          <th>Nombres y Apellidos</th>
+          <th>Tipo</th>
+          <th>Subtipo</th>
+          <th>Dirección</th>
+          <th>Teléfono</th>
+          <th>Apoderado</th> 
+          <?php if($fallos == null): ?>
+          <th>Acciones</th>
+          <?php elseif(!isset($fallos[1]) && $fallos[0]->tipo == 'APELACION'): ?>               
+          <th>Acciones</th>
+          <?php endif; ?>
+        </tr>
+      </thead>
+      <tbody>
+       <?php foreach($casos as $caso): ?>
+       <tr>
+        <td><?php echo e($caso->cedula); ?></td>
+        <td><a href="<?php echo e(base_url('Personas/Ver/'.$caso->id_personas)); ?>"><?php echo e($caso->nombre_persona); ?></a></td>
+        <td><?php echo e($caso->tipo_involucrados); ?></td>
+        <td><?php echo e($caso->subtipo); ?></td>
+        <td><?php echo e($caso->direccion); ?></td>   
+        <td><?php echo e($caso->telefono); ?></td>    
+        <td><a href="<?php echo e(base_url('Apoderados/Ver/'.$caso->id_apoderados)); ?>"><?php echo e($caso->nombre_apoderados); ?></a></td> 
+         
+        <td>
+          <?php if($caso->id_apoderados == null): ?>
+          <?php if($fallos == NULL): ?> 
+          <a href="<?php echo e(isset($caso->id_apoderados) ? base_url('Casos/Representar/'.$casos[0]->id_casos.'/'.$caso->id_personas.'/'.$caso->id_apoderados)  : base_url('Casos/Representar/'.$casos[0]->id_casos.'/'.$caso->id_personas.'/NULL')); ?>" class='btn btn-sm btn-primary fa fa-plus' title='Asignar Apoderado'></a>
+          <?php elseif(!isset($fallos[1]) && $fallos[0]->tipo == 'APELACION'): ?>
+          <a href="<?php echo e(isset($caso->id_apoderados) ? base_url('Casos/Representar/'.$casos[0]->id_casos.'/'.$caso->id_personas.'/'.$caso->id_apoderados)  : base_url('Casos/Representar/'.$casos[0]->id_casos.'/'.$caso->id_personas.'/NULL')); ?>" class='btn btn-sm btn-primary fa fa-plus' title='Asignar Apoderado'></a>
+          <?php endif; ?>
+          <?php else: ?>
+          <?php if($fallos == NULL): ?> 
+          <a href="<?php echo e(isset($caso->id_apoderados) ? base_url('Casos/Representar/'.$casos[0]->id_casos.'/'.$caso->id_personas.'/'.$caso->id_apoderados)  : base_url('Casos/Representar/'.$casos[0]->id_casos.'/'.$caso->id_personas.'/NULL')); ?>" class='btn btn-sm btn-primary fa fa-refresh' title='Cambiar Apoderado'></a>
+          <?php elseif(!isset($fallos[1]) && $fallos[0]->tipo == 'APELACION'): ?>
+          <a href="<?php echo e(isset($caso->id_apoderados) ? base_url('Casos/Representar/'.$casos[0]->id_casos.'/'.$caso->id_personas.'/'.$caso->id_apoderados)  : base_url('Casos/Representar/'.$casos[0]->id_casos.'/'.$caso->id_personas.'/NULL')); ?>" class='btn btn-sm btn-primary fa fa-refresh' title='Cambiar Apoderado'></a>
+          <?php endif; ?>          
+          <?php endif; ?>
+          <?php if($auth[0]->Rol == "ADMINISTRADOR"): ?>  
+          <?php if($fallos == NULL): ?> 
+          <a href="<?php echo e(isset($caso->id_apoderados) ? base_url('Casos/Involucrados/Eliminar/'.$caso->id_involucrados.'/'.$casos[0]->id_casos.'/'.$caso->id_personas.'/'.$caso->id_apoderados)  : base_url('Casos/Involucrados/Eliminar/'.$caso->id_involucrados.'/'.$casos[0]->id_casos.'/'.$caso->id_personas.'/NULL')); ?>" class='btn btn-sm btn-danger fa fa-trash' title='Eliminar del caso'></a>
+          <?php endif; ?>
+          <?php endif; ?>
+        </td>                
+      </tr>
+      <?php endforeach; ?>
+    </tbody>
+  </table>
+</div>
+</div>
+<?php else: ?>
+<h3 style="color: red">No Hay Involucrados!</h3>
+<?php endif; ?>
+
+<?php if($fallos != NULL): ?>
+<h4><b>Fallos</b></h4>
+<hr>
+<div class="row">
+  <div class="<?php echo e(count($fallos) > 1 ? 'col-xs-6' : 'col-xs-8'); ?>">
+    <p class="lead" id="fechaMoment3"><?php echo e($fallos[0]->fecha); ?> </p>
+    <div class="table-responsive">
+      <table class="table">
+       <tr>
+        <?php if($casos[0]->estado == 'ACTIVO' && $auth[0]->Rol == "REGULAR"): ?>
+        <th>Acciones:</th>
+        <?php elseif($auth[0]->Rol == "ADMINISTRADOR"): ?>
+        <th>Acciones:</th>
+        <?php endif; ?>
+        <td>
+          <?php if($casos[0]->estado == 'ACTIVO'): ?>
+          <a title="Editar" class="btn btn-sm btn-warning fa fa-edit" href="<?php echo e(base_url('Fallos/Editar/'.$fallos[0]->num_resolucion.'/'.$casos[0]->id_casos)); ?>">
+          </a>
+          <?php endif; ?>
+
+          <?php if($auth[0]->Rol == "ADMINISTRADOR"): ?>
+          <a title="Eliminar" class="btn btn-sm btn-danger fa fa-trash" href="<?php echo e(base_url('Fallos/Eliminar/'.$fallos[0]->num_resolucion.'/'.$casos[0]->id_casos.'/'.$fallos[0]->tipo)); ?>"></a>
+          <?php endif; ?>
+        </td>
+      </tr>      
+      <tr>
+        <th>Resolución:</th>
+        <td><?php echo e($fallos[0]->num_resolucion); ?></td>
+      </tr>
+      <tr>
+        <th>Tipo:</th>
+        <td><?php echo e($fallos[0]->tipo); ?></td>
+      </tr>
+      <tr>
+        <th>Fallo:</th>
+        <td><?php echo e($fallos[0]->fallo); ?></td>
+      </tr>
+      <tr>
+        <th>Detalles:</th>
+        <td><?php echo e($fallos[0]->detalles); ?></td>
+      </tr>
+    </table>
+  </div>
+</div>
+<?php if(count($fallos) > 1): ?>
+<div class="col-xs-6">
+  <p class="lead" id="fechaMoment4"><?php echo e($fallos[1]->fecha); ?></p>
+  <div class="table-responsive">
+    <table class="table">
+       <tr>
+        <?php if($casos[0]->estado == 'ACTIVO' && $auth[0]->Rol == "REGULAR"): ?>
+        <th>Acciones:</th>
+        <?php elseif($auth[0]->Rol == "ADMINISTRADOR"): ?>
+        <th>Acciones:</th>
+        <?php endif; ?>
+        <td>
+          <?php if($casos[0]->estado == 'ACTIVO'): ?>
+          <a title="Editar" class="btn btn-sm btn-warning fa fa-edit" href="<?php echo e(base_url('Fallos/Editar/'.$fallos[1]->num_resolucion.'/'.$casos[0]->id_casos)); ?>">
+          </a>
+          <?php endif; ?>
+
+          <?php if($auth[0]->Rol == "ADMINISTRADOR"): ?>
+          <a title="Eliminar" class="btn btn-sm btn-danger fa fa-trash" href="<?php echo e(base_url('Fallos/Eliminar/'.$fallos[1]->num_resolucion.'/'.$casos[0]->id_casos.'/'.$fallos[1]->tipo)); ?>"></a>
+          <?php endif; ?>
+        </td>
+      </tr>   
+      <tr>
+        <th>Resolución:</th>
+        <td><?php echo e($fallos[1]->num_resolucion); ?></td>
+      </tr>
+      <tr>
+        <th>Tipo:</th>
+        <td><?php echo e($fallos[1]->tipo); ?></td>
+      </tr>
+      <tr>
+        <th>Fallo:</th>
+        <td><?php echo e($fallos[1]->fallo); ?></td>
+      </tr>
+      <tr>
+        <th>Detalles:</th>
+        <td><?php echo e($fallos[1]->detalles); ?></td>
+      </tr>
+    </table>
+  </div>
+</div>
+<?php endif; ?>
+</div>
+<?php endif; ?>
+</section>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

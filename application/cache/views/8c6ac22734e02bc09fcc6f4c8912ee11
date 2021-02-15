@@ -1,0 +1,92 @@
+<?php $__env->startSection('content'); ?>
+
+<section class="content-header">
+  <ol class="breadcrumb encuadre">
+    <li><a href="<?php echo e(base_url('Inicio')); ?>"><i class="fa fa-fw fa-th"></i>Inicio</a></li>
+    <li><a href="<?php echo e(base_url('Comparendos')); ?>">Comparendos</a></li>
+    <li>Ver Comparendo</li>
+  </ol>
+</section>
+<br>
+<section class="invoice">
+  <div class="row">
+    <div class="col-xs-12">
+      <h2 class="page-header">
+        <i class="fa fa fa-file-text-o"></i> Detalles de comparendo 
+        <span class="pull-right"><strong><?php echo e($comparendos->estado); ?></strong></span>
+
+      </h2>
+    </div>
+  </div>
+  <div class="row invoice-info">
+    <div class="col-sm-6 invoice-col">
+      <strong>Numero de comparendo</strong>
+      <br>
+      <span><?php echo e($comparendos->id); ?></span>
+      <br><br>
+      <strong>Articulo</strong>
+      <br> 
+      <span><?php echo e($comparendos->articulo); ?></span>
+    </div>    
+    <div class="col-sm-1 invoice-col">
+    </div>
+    <div class="col-sm-5 invoice-col">
+
+      <div class="table-responsive">
+       <h4>Información</h4>
+       <table class="table">
+         <tr>
+          <th><b>Contraventor:</b></th>
+          <td>
+            <?php if($personas != null): ?>
+              <a href="<?php echo e(base_url('Personas/Ver/'.$personas->id)); ?>"><?php echo e($personas->primer_nombre." ".$personas->segundo_nombre." ".$personas->primer_apellido." ".$personas->segundo_apellido." "); ?>
+
+              </a>
+            <?php else: ?>
+            <h4 style="color: red">No Hay Involucrado!</h4>
+            <?php endif; ?>
+          </td>
+          <?php if($auth[0]->Rol == "ADMINISTRADOR"): ?> 
+          <?php if($personas != null): ?>
+          <td>            
+              <a href="<?php echo e(base_url('Comparendos/Ver/Eliminar/'.$comparendos->id)); ?>" class='btn btn-sm btn-danger fa fa-trash' title="Eliminar del comparendo">
+              </a>            
+          </td>
+          <?php endif; ?>
+          <?php endif; ?>
+        </tr>
+        <tr>
+          <th><b>Fecha:</b></th>
+          <td><span id="fechaMoment"><?php echo e($comparendos->fecha); ?></span></td>
+        </tr>
+        <tr>
+          <th><b>Tipo:</b></th>
+          <td><?php echo e($comparendos->tipo); ?></td>
+        </tr>
+        <tr>
+          <th><b>Numeral:</b></th>
+          <td><?php echo e($comparendos->numeral); ?></td>
+        </tr>
+        <tr>
+          <th><b>Literal:</b></th>
+          <td><?php echo e($comparendos->literal); ?></td>
+        </tr>
+        <tr>
+          <th><b>Multa:</b></th>
+          <td><?php echo e($comparendos->multa); ?></td>
+        </tr>
+        <tr>
+          <th><b>Numero de folio:</b></th>
+          <td><?php echo e($comparendos->num_folios); ?></td>
+        </tr>
+        <tr>
+          <th><b>Numero de caja:</b></th>
+          <td><?php echo e($comparendos->num_caja); ?></td>
+        </tr>       
+      </table>
+    </div>
+  </div>
+</div>
+</section> 
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

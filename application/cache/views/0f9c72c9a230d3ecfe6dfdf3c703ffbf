@@ -1,0 +1,108 @@
+<?php $__env->startSection('content'); ?>
+
+<section class="content-header">
+  <ol class="breadcrumb encuadre">
+    <li><a href="<?php echo e(base_url('Inicio')); ?>"><i class="fa fa-fw fa-th"></i>Inicio</a></li>
+    <li><a href="<?php echo e(base_url('Apoderados')); ?>">Apoderados</a></li>
+    <li>Ver Apoderado</li>
+  </ol>
+</section>
+<br>
+<section class="invoice">
+  <div class="row">
+    <div class="col-xs-12">
+      <h2 class="page-header">
+        <i class="fa fa fa-mortar-board"></i> Detalles del apoderado 
+        <div class="pull-right">
+          <a href="<?php echo e(base_url('Apoderados/Editar/'.$apoderados->id)); ?>" class='btn btn-sm btn-warning fa fa-edit' title='Editar'></a>
+          <div>      
+          </h2>
+        </div>
+      </div>
+      <div class="row invoice-info">  
+        <div class="col-sm-8 invoice-col">
+          <?php if($casos != NULL): ?>
+          <h4><b>Casos</b></h4>
+          <hr>
+          <div class="table-responsive">
+            <table id="tb-tabla" class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>Radicado</th>
+                  <th>Asunto</th>                     
+                  <th>Estado</th>                   
+                </tr>
+              </thead>
+              <tbody>
+                <?php foreach($casos as $caso): ?>
+                <tr align="center">
+                  <td><a href="<?php echo e(base_url('Casos/Ver/'.$caso->id)); ?>"><?php echo e($caso->id); ?></a></td>
+                  <td><?php echo e($caso->asunto); ?></td>
+                  <td><?php echo e($caso->estado); ?></td>               
+                </tr>
+                <?php endforeach; ?>
+              </tbody>
+            </table>
+          </div>
+          <?php else: ?>
+          <h3 style="color: red">No Hay Casos!</h3>
+          <?php endif; ?>
+          <hr>
+          <br> 
+          <?php if($personas != NULL): ?>     
+          <h4><b>Representaciones (Personas)</b></h4>
+          <hr>
+          <div class="table-responsive">
+            <table id="tb-tabla" class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>Cedula</th>
+                  <th>Nombre</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php foreach($personas as $persona): ?>
+                <tr align="center">
+                  <td><?php echo e($persona->cedula); ?></td>
+                  <td><a href="<?php echo e(base_url('Personas/Ver/'.$persona->id)); ?>"><?php echo e($persona->nombre_persona); ?></a></td>              
+                </tr>
+                <?php endforeach; ?>
+              </tbody>
+            </table>
+          </div>
+          <?php else: ?>
+          <h3 style="color: red">No Hay Personas Representadas!</h3>
+          <?php endif; ?>
+        </div>    
+        <div class="col-sm-4 invoice-col">
+
+          <div class="table-responsive">
+           <h4>Información</h4>
+           <table class="table">
+             <tr>
+              <th><b>Id:</b></th>
+              <td><?php echo e($apoderados->id); ?></td>
+            </tr>
+            <tr>
+              <th><b>Targeta profesional:</b></th>
+              <td><?php echo e($apoderados->targeta_pro); ?></td>
+            </tr>
+            <tr>
+              <th><b>Nombre:</b></th>
+              <td><?php echo e($apoderados->primer_nombre.' '.$apoderados->segundo_nombre.' '.$apoderados->primer_apellido.' '.$apoderados->segundo_apellido); ?></td>
+            </tr>
+            <tr>
+              <th><b>Email:</b></th>
+              <td><?php echo e($apoderados->email); ?></td>
+            </tr>
+            <tr>
+              <th><b>Telefono:</b></th>
+              <td><?php echo e($apoderados->telefono); ?></td>
+            </tr>      
+          </table>
+        </div>
+      </div>
+    </div>
+  </section> 
+  <?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

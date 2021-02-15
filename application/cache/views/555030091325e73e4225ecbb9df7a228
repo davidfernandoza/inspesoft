@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta http-equiv="content-type" content="text/html"/>
+	<meta charset="UTF-8">
+	<link rel="shortcut icon" href="<?php echo e(base_url('resources/img/logos/favicon.ico')); ?>" type="image/
+	x-icon"/>
+	<link rel="stylesheet" href="<?php echo e((base_url('resources/plugins/bootstrap/css/bootstrap.min.css'))); ?>"/>
+	<link rel="stylesheet" media="print" href="<?php echo e(base_url('resources/css/own/pdf.css')); ?>"/>
+	<script src="<?php echo e(base_url('resources/plugins/jQuery/jquery-2.2.3.min.js')); ?>">
+	</script>
+	<script src="<?php echo e(base_url('resources/plugins/moment/moment.min.js')); ?>"></script>
+	<script src="<?php echo e(base_url('resources/plugins/moment/es-moment.js')); ?>"></script>
+	<script src="<?php echo e(base_url('resources/plugins/bootstrap/js/bootstrap.min.js')); ?>" defer>
+	</script>
+	<script type="text/javascript">
+		$(document).on("ready", function(){
+			var fecha = $("#fechaCasoInicio").val();		
+			var fechaFormat = moment(fecha).locale("es-moment").format('LL');
+			$("#fechaCasoFormat").html(fechaFormat)
+		});	
+	</script>
+	<style>
+	.firma{
+		position: relative;
+		/*border:2px dashed red;*/
+		float: left;
+		width: 332px;
+		padding-top: 50px;
+	}
+	.firmaBody{
+		/*border:2px dashed green;*/
+		width: 670px;
+		display: table;
+		margin-left: 30px;
+		margin-right: 30px;
+	}
+	.tel{
+		margin-bottom: 10px;
+	}
+	.btn{
+		margin-bottom: 50px; 
+		margin-left: 5px;
+		margin-top:40px; 
+	}
+.title{
+	font-family: Times New Roman;
+	display: block;
+    font-size: 18px;
+    font-weight: bold;
+}
+p {
+	margin-bottom: 20px;
+}
+.pjuramento{
+	margin-top: 10px;
+}
+	    
+
+
+</style>
+<title>Inspesoft | <?php echo e($title); ?></title>
+</head>
+<body>
+	<center>
+		<table>
+			<tr>
+				<td align="justify">
+					<table>
+						<tr align="center">
+							<td>
+								<img src="<?php echo e(base_url('resources/img/logos/strc-160.png')); ?>" width="75">
+							</td>
+							<td width="530">
+								<h3 class="title">ALCALDIA MUNICIPAL<br>
+									<?php echo e($impresiones->secretaria); ?> <br>
+									SANTA ROSA DE CABAL</h3>
+								</td>
+								<td width="40"></td>
+							</tr>
+						</table>		
+					</td>
+				</tr>
+				<tr align="justify">
+					<table>
+						<tr align="center">
+							<td width="30">										
+							</td>
+							<td width="800">
+								<h3 class="title"><?php echo e($impresiones->titulo); ?></h3>
+							</td>
+							<td width="30"></td>
+						</tr>
+					</table>
+				</tr>	
+				<tr align="justify">		
+					<td>
+						<font face="arial" size="3" color="black">
+							<table>
+								<tr>
+									<td width="35">
+										<input type="hidden" id="fechaCasoInicio" value="<?php echo e($casos[0]->fecha_inicio); ?>">
+									</td>
+									<td width="750">
+										<div>CASO: <?php echo e($casos[0]->id_casos); ?></div>
+										<div id="fechaCasoFormat"></div>	
+										<br>																		
+										<?php foreach($casos as $caso): ?>
+										<?php if($caso->tipo_involucrados == 'DENUNCIANTE'): ?>
+										<div>NOMBRE DEL DENUNCIANTE: <?php echo e($caso->nombre_persona); ?></div>
+										<div>CEDULA DE CIUDADANIA: <?php echo e($caso->cedula ==''?'NO':$caso->cedula); ?></div>
+										<div>DIRECCION: <?php echo e($caso->direccion ==''?'NO':$caso->direccion); ?></div>
+										<div class="tel">TELEFONO: <?php echo e($caso->telefono ==''?'NO':$caso->telefono); ?></div>
+										<?php endif; ?>											
+										<?php endforeach; ?>
+
+										<?php if($denunciantes == $ofendidos && $denunciantes > 1 ): ?>
+										<div class="tel">OFENDIDO: MISMOS DENUNCIANTES</div>
+										<?php elseif($denunciantes == $ofendidos): ?>
+										<div class="tel">OFENDIDO: MISMO DENUNCIANTE</div>
+										<?php elseif($aprobado == 0 && $denunciantes > 1): ?>
+										<div class="tel">OFENDIDO: MISMOS DENUNCIANTES</div>
+										<?php elseif($aprobado == 0): ?>
+										<div class="tel">OFENDIDO: MISMO DENUNCIANTE</div>
+										<?php else: ?>											
+										<?php foreach($casos as $caso): ?>
+										<?php if($caso->tipo_involucrados == 'OFENDIDO' || $caso->subtipo == 'OFENDIDO'): ?>
+										<div>NOMBRE DEL OFENDIDO: <?php echo e($caso->nombre_persona); ?></div>
+										<div>CEDULA DE CIUDADANIA: <?php echo e($caso->cedula ==''?'NO':$caso->cedula); ?></div>
+										<div>DIRECCION: <?php echo e($caso->direccion ==''?'NO':$caso->direccion); ?></div>
+										<div class="tel">TELEFONO: <?php echo e($caso->telefono ==''?'NO':$caso->telefono); ?></div>
+										<?php endif; ?>											
+										<?php endforeach; ?>
+										<?php endif; ?>
+
+										<?php foreach($casos as $caso): ?>
+										<?php if($caso->tipo_involucrados == 'CONTRAVENTOR'): ?>
+										<div>CONTRAVENTOR: <?php echo e($caso->nombre_persona); ?></div>
+										<div>CEDULA DE CIUDADANIA: <?php echo e($caso->cedula ==''?'NO':$caso->cedula); ?></div>
+										<div>DIRECCION: <?php echo e($caso->direccion ==''?'NO':$caso->direccion); ?></div>
+										<div class="tel">TELEFONO: <?php echo e($caso->telefono ==''?'NO':$caso->telefono); ?></div>
+										<?php endif; ?>											
+										<?php endforeach; ?>												
+									</td>
+									<td width="30"></td>
+								</tr>
+							</table>
+						</font>
+					</td>
+				</tr>
+				<tr align="justify">
+					<table>
+						<tr>
+							<td width="40"></td>
+							<td width="740">
+								<font face="arial" size="3" color="black">
+									<p align="justify" class="pjuramento"> 
+										<?php echo e($impresiones->juramento); ?>
+
+									</p>
+									<p>ASUNTO: <?php echo e($casos[0]->asunto); ?></p>									
+									<p align="justify">HECHOS: <?php echo e($casos[0]->hechos); ?></p>
+								</font>
+							</td>
+							<td width="40"></td>
+						</tr>
+					</table>							
+				</tr>
+				<div class="firmaBody" >
+					<?php for($i=0; $i<=$denunciantes; $i++): ?>
+					<?php if($casos[$i]->tipo_involucrados == 'DENUNCIANTE'): ?>											 
+					<font face="arial" size="3" color="black">
+						<?php if($i == 0): ?>	
+						<div class="firma">
+							<div align="left"><?php echo e($impresiones->nombre); ?></div>
+							<div align="left">Inspector Rural Municipal</div>
+						</div>
+						<div class="firma">
+							<div align="right" ><?php echo e($casos[$i]->nombre_persona); ?></div>
+							<div align="right">Querellante</div>								
+						</div>
+						<?php else: ?>	
+						<div class="firma">
+							<div align="<?php echo e($i%2 == 0? 'left':'right'); ?>"><?php echo e($casos[$i]->nombre_persona); ?></div>
+							<div align="<?php echo e($i%2 == 0? 'left':'right'); ?>">Querellante</div>
+						</div>						
+					</font>
+					<?php endif; ?>						
+					<?php endif; ?>
+					<?php endfor; ?>
+				</div>
+				<br>
+
+				<tr align="justify">
+					<table>
+						<tr>
+							<td width="40"></td>
+							<td width="740">
+								<font face="arial" size="1" color="black">											
+									<div>PROYECTO. ELABORÓ: <?php echo e($casos[0]->nombre_usuario); ?></div>									
+								</font>
+							</td>
+							<td width="30"></td>
+						</tr>
+					</table>
+
+				</tr>
+				<tr align="justify">
+					<table>
+						<tr align="center">
+							<td width="40"></td>
+							<td width="740">
+								<font face="arial" size="3" color="black">
+									<br>											
+									<div><?php echo e('"'.$impresiones->lema.'"'); ?></div>																
+								</font>
+								<font face="arial" size="2" color="black">																	
+									<div><?php echo e($impresiones->direccion.' Telefono PBX '.$impresiones->telefono.' - Fax '.$impresiones->fax); ?></div>																
+								</font>
+								<font face="arial" size="2" color="black">																		
+									<div><?php echo e($impresiones->email.' - '.$impresiones->web); ?></div>									
+								</font>
+							</td>
+							<td width="40"></td>
+						</tr>								
+					</table>							
+				</tr>
+			</table>
+
+		</font>
+		<input class="btn btn-primary btn-md" name="Imprimir" type="submit" value="Imprimir" onclick="this.style.visibility='hidden' ; print(); this.style.visibility=''"/>
+		<a href="<?php echo e(base_url('Casos/Plantilla/Editar')); ?>" target="_blank" class='btn btn-warning btn-md noPrint'>Editar</a>
+	</center>
+</body>
+</html>
+
+

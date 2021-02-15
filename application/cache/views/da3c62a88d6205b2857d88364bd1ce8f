@@ -1,0 +1,289 @@
+<?php $__env->startSection('content'); ?>
+
+  <?php /* Cabecera del cuerpo */ ?>
+  <section class="content-header">
+    <h1>AyudApp<small>Inicio</small></h1>
+
+    <?php /* Menu de navegacion*/ ?>
+    <ol class="breadcrumb">
+      <li><a href=""><i class="fa fa-fw fa-th"></i>Inicio</a></li>
+    </ol>
+  </section>
+
+
+  <!-- Cuerpo -->
+  <?php /* Modulo 1 */ ?>
+  <br>
+  <section class="content">
+      <div class="row">
+        <?php /*Yo*/ ?>
+        <a href="<?php echo e(base_url('inicio/app')); ?>" class="box">
+          <div class="col-lg-3 col-xs-6">
+            <div class="small-box bg-green">
+              <div class="inner">
+                <h4><strong></strong></h4>
+                <p>Mi perfil</p>
+              </div>
+              <div class="icon">
+                <i class="fa fa-eye"></i>
+              </div>
+              <div class="small-box-footer">
+                Más Información <i class="fa fa-arrow-circle-right"></i>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        
+        <?php /* Registro*/ ?>
+          <a href="" class="box">
+            <div class="col-lg-3 col-xs-6">
+              <div class="small-box bg-aqua">
+                <div class="inner">
+                  <h4><strong>Registro</strong></h4>
+                  <p>Crear Nuevo</p>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-users"></i>
+                </div>
+                <div class="small-box-footer">
+                  Más Información <i class="fa fa-arrow-circle-right"></i>
+                </div>
+              </div>
+            </div>
+          </a>
+        
+   
+          <a href="" class="box">
+              <div class="col-lg-3 col-xs-6">
+                <div class="small-box bg-aqua">
+                  <div class="inner">
+                    <h4><strong>C.B.A</strong></h4>
+                    <p>Ver</p>
+                  </div>
+                  <div class="icon">
+                    <i class="fa fa-home"></i>
+                  </div>
+                  <div class="small-box-footer">
+                    Más Información <i class="fa fa-arrow-circle-right"></i>
+                  </div>
+                </div>
+              </div>
+            </a>
+        
+        <?php /* Adulto Mayor*/ ?>
+        <a href="" class="box">
+          <div class="col-lg-3 col-xs-6">
+            <div class="small-box bg-yellow">
+              <div class="inner">
+                <h4><strong>Adulto Mayor</strong></h4>
+                <p>Listar</p>
+              </div>
+              <div class="icon">
+                <i class="fa fa-child"></i>
+              </div>
+              <div class="small-box-footer">
+                Más Información <i class="fa fa-arrow-circle-right"></i>
+              </div>
+            </div>
+          </div>
+        </a>
+        
+        <?php /*Especialidades*/ ?>
+          <a href="" class="box">
+            <div class="col-lg-3 col-xs-6">
+              <div class="small-box bg-maroon">
+                <div class="inner">
+                  <h4><strong>Especialidades</strong></h4>
+                  <p>Listar</p>
+                </div>
+                <div class="icon">
+                  <i class="fa fa fa-stethoscope"></i>
+                </div>
+                <div class="small-box-footer">
+                  Más Información <i class="fa fa-arrow-circle-right"></i>
+                </div>
+              </div>
+            </div>
+          </a>
+        
+
+
+        
+        <?php /* Citas*/ ?>
+          <a href="" class="box">
+                <div class="col-lg-3 col-xs-6">
+                  <div class="small-box bg-maroon">
+                    <div class="inner">
+                      <h4><strong>Citas</strong></h4>
+                      <p>Listar</p>
+                    </div>
+                    <div class="icon">
+                      <i class="fa fa-fw fa-calendar"></i>
+                    </div>
+                    <div class="small-box-footer">
+                      Más Información <i class="fa fa-arrow-circle-right"></i>
+                    </div>
+                  </div>
+                </div>
+              </a>
+        
+      </div>
+      <br><br><br>
+
+
+
+       
+          <div class="row">
+            
+              <a href="" class="box">
+                <div class="col-lg-3 col-xs-6">
+                  <div class="small-box bg-green">
+                    <div class="inner">
+                      <h4><strong>Usuarios</strong></h4>
+                      <p>Listar</p>
+                    </div>
+                    <div class="icon">
+                      <i class="fa fa-user"></i>
+                    </div>
+                    <div class="small-box-footer">
+                      Más Información <i class="fa fa-arrow-circle-right"></i>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            
+              <a href="" class="box">
+                <div class="col-lg-3 col-xs-6">
+                  <div class="small-box bg-green">
+                    <div class="inner">
+                      <h4><strong>C.B.A</strong></h4>
+                      <p>Listar</p>
+                    </div>
+                    <div class="icon">
+                      <i class="fa fa-home"></i>
+                    </div>
+                    <div class="small-box-footer">
+                      Más Información <i class="fa fa-arrow-circle-right"></i>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            
+
+            <a href="" class="box">
+              <div class="col-lg-3 col-xs-6">
+                <div class="small-box bg-aqua ">
+                  <div class="inner">
+                    <h4><strong>Metas</strong></h4>
+                    <p>Listar</p>
+                  </div>
+                  <div class="icon">
+                    <i class="fa fa-line-chart"></i>
+                  </div>
+                  <div class="small-box-footer">
+                    Más Información <i class="fa fa-arrow-circle-right"></i>
+                  </div>
+                </div>
+              </div>
+            </a>
+
+            <a href="" class="box">
+              <div class="col-lg-3 col-xs-6">
+                <div class="small-box bg-yellow">
+                  <div class="inner">
+                    <h4><strong>Actividades</strong></h4>
+                    <p>Listar</p>
+                  </div>
+                  <div class="icon">
+                    <i class="fa fa-bicycle"></i>
+                  </div>
+                  <div class="small-box-footer">
+                    Más Información <i class="fa fa-arrow-circle-right"></i>
+                  </div>
+                </div>
+              </div>
+            </a>
+
+            <a href="" class="box">
+              <div class="col-lg-3 col-xs-6">
+                <div class="small-box bg-maroon">
+                  <div class="inner">
+                    <h4><strong>Comunas</strong></h4>
+                    <p>Listar</p>
+                  </div>
+                  <div class="icon">
+                    <i class="fa  fa-map-signs"></i>
+                  </div>
+                  <div class="small-box-footer">
+                    Más Información <i class="fa fa-arrow-circle-right"></i>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+          <br><br><br>
+      
+
+
+
+ 
+        <div class="row">
+          
+            <a href="" class="box">
+              <div class="col-lg-3 col-xs-6">
+                <div class="small-box bg-green">
+                  <div class="inner">
+                    <h4><strong>C.B.A</strong></h4>
+                    <p>Listar</p>
+                  </div>
+                  <div class="icon">
+                    <i class="fa fa-home"></i>
+                  </div>
+                  <div class="small-box-footer">
+                    Más Información <i class="fa fa-arrow-circle-right"></i>
+                  </div>
+                </div>
+              </div>
+            </a>
+          
+            <a href="" class="box">
+              <div class="col-lg-3 col-xs-6">
+                <div class="small-box  ">
+                  <div class="inner">
+                    <b><h4><strong>Especialidades</strong></h4></b>
+                    <p>Listar</p>
+                  </div>
+                  <div class="icon">
+                    <i class="fa fa-stethoscope"></i>
+                  </div>
+                  <div class="small-box-footer">
+                    Más Información <i class="fa fa-arrow-circle-right"></i>
+                  </div>
+                </div>
+              </div>
+            </a>
+            <a href="" class="box">
+              <div class="col-lg-3 col-xs-6">
+                <div class="small-box   ">
+                  <div class="inner">
+                    <h4><strong>Masivos</strong></h4>
+                    <p>Listar</p>
+                  </div>
+                  <div class="icon">
+                    <i class="fa fa fa-bullhorn"></i>
+                  </div>
+                  <div class="small-box-footer">
+                    Más Información <i class="fa fa-arrow-circle-right"></i>
+                  </div>
+                </div>
+              </div>
+            </a>
+        </div>
+      <br>
+      
+    </section>
+
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

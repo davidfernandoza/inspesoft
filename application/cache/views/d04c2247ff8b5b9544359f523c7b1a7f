@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <?php echo $__env->make('layouts.partials.header', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+  <body class="hold-transition login-page">
+    <div class="login-box"> 
+
+      <?php /* Logo */ ?>
+      <div align="center">
+          <img  class="img-responsive pad" src="<?php echo e(base_url('resources/img/logos/logo.png')); ?>" alt="Photo" width="270px" height="270px">
+      </div>
+
+      <?php /* Alertas */ ?>
+      <?php echo $__env->make('layouts.partials.alert', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>    
+
+      <?php /* Cuerpo */ ?>
+      <div class="login-box-body">
+        <?php echo $__env->yieldContent('content'); ?>
+      </div>
+
+    </div>
+
+    <?php /* Scripts */ ?>
+    <?php echo $__env->make('layouts.partials.script', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+  </body>
+</html>

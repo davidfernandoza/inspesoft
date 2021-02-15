@@ -1,0 +1,206 @@
+<?php /*Foto de perfil*/ ?>
+<div class="col-md-4 primera">
+  <center>
+    <div class="box box-header form-group has-feedback <?php echo e($errors->has('photo') ? 'has-error' : ''); ?> tamanio">
+      <div class="fileinput fileinput-new" data-provides="fileinput">
+        <div class="fileinput-new  thumbnail ajuste">
+          <img  src="<?php echo e($usuarios == null ? asset('img/users/default.png'): asset('img/users/'.$usuarios->foto_url)); ?>"
+                alt="Foto de perfil">
+        </div>
+        <div class="fileinput-preview fileinput-exists thumbnail ajuste"></div>
+        <div>
+                    <span class="btn btn-default btn-file"><span class="fileinput-new">Selecciona foto</span>
+                    <span class="fileinput-exists">Cambiar</span><input type="file" name="photo"></span>
+          <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remover</a>
+        </div>
+        <?php if($usuarios): ?>
+          <a href="<?php echo e(route('imgDelete', $usuarios->id)); ?>" class="btn btn-default btn-file">Eliminar</a>
+        <?php endif; ?>
+      </div>
+      <?php echo $errors->first('photo', '<span class="help-block">:message</span>'); ?>
+
+    </div>
+    <center>
+      <span>Se recomienda seleccionar una foto con todos sus lados iguales (cuadrada)</span>
+    </center>
+  </center>
+</div>
+<div class="col-md-8">
+
+	<?php /* Id */ ?>
+	<div class="form-group has-feedback <?php echo e($errors->has('id') ? 'has-error' : ''); ?>">
+		<label class="control-label" for="inputError">Cédula de ciudadanía (*)</label>
+		<input name="id" id="id" type="number" class="form-control" placeholder="Cédula de ciudadanía..."
+					 title="El campo solo debe contener números"
+					 value="<?php echo e($usuarios == null ? old('id') : $usuarios->id); ?>"
+          <?php echo e($usuario_id == auth()->user()->id ? 'disabled' : ''); ?>/>
+		      <?php echo $errors->first('id', '<span class="help-block">:message</span>'); ?>
+
+          <?php echo $usuario_id == auth()->user()->id ? '<span class="help-block">No puedes cambiar tu propia cedula de
+                                                    ciudadanía.</span>' : ''; ?>
+
+    <?php if($usuario_id == auth()->user()->id ): ?>
+      <input name="id" id="id" type="hidden" value="<?php echo e($usuarios == null ? old('id') : $usuarios->id); ?>"/>
+    <?php endif; ?>
+	</div>
+	<?php /* End Id */ ?>
+
+
+	<?php /* Firts Name */ ?>
+	<div class="form-group has-feedback <?php echo e($errors->has('first_name') ? 'has-error' : ''); ?>">
+		<label class="control-label" for="inputError">Primer nombre (*)</label>
+		<input name="first_name" id="first_name" type="text" class="form-control"  placeholder="Primer nombre ..."
+					 title="El campo solo debe contener letras"
+					 value="<?php echo e($usuarios == null ? old('first_name') : $usuarios->primer_nombre); ?>"/>
+		<?php echo $errors->first('first_name', '<span class="help-block">:message</span>'); ?>                
+	</div>
+	<?php /* End firts Name */ ?>
+	
+
+	<?php /* Second Name */ ?>
+	<div class="form-group has-feedback <?php echo e($errors->has('second_name') ? 'has-error' : ''); ?>">
+		<label class="control-label" for="inputError">Segundo nombre </label>
+		<input name="second_name" id="second_name" type="text" class="form-control" placeholder="Segundo nombre ..."
+					 title="El campo solo debe contener letras"
+					 value="<?php echo e($usuarios == null ? old('second_name') : $usuarios->segundo_nombre); ?>" />
+		<?php echo $errors->first('second_name', '<span class="help-block">:message</span>'); ?>               
+	</div>
+	<?php /* End Second Name */ ?>
+	
+
+	<?php /* Frist Lastname */ ?>
+	<div class="form-group has-feedback <?php echo e($errors->has('frist_lastname') ? 'has-error' : ''); ?>">
+		<label class="control-label" for="inputError">Primer apellido (*)</label>
+		<input name="frist_lastname" id="frist_lastname" type="text" class="form-control" placeholder="Primer apellido ..."
+					 title="El campo solo debe contener letras"
+					 value="<?php echo e($usuarios == null ? old('frist_lastname') : $usuarios->primer_apellido); ?>"/>
+		<?php echo $errors->first('frist_lastname', '<span class="help-block">:message</span>'); ?>                
+	</div>
+	<?php /* End First Lastname */ ?>
+	
+
+	<?php /* Second Lastname */ ?>
+	<div class="form-group has-feedback <?php echo e($errors->has('second_lastname') ? 'has-error' : ''); ?>">
+		<label class="control-label" for="inputError">Segundo apellido</label>
+		<input name="second_lastname" id="second_lastname" type="text" class="form-control" placeholder="Segundo apellido ..."
+					 title="El campo solo debe contener letras"
+					 value="<?php echo e($usuarios == null ? old('second_lastname') : $usuarios->segundo_apellido); ?>"/>
+		<?php echo $errors->first('second_lastname', '<span class="help-block">:message</span>'); ?>                
+	</div>
+	<?php /* End Second Lastname */ ?>
+	
+
+	<?php /* Email */ ?>
+	<div class="form-group has-feedback <?php echo e($errors->has('email') ? 'has-error' : ''); ?>">
+		<label class="control-label" for="inputError">Correo electrónico (*)</label>
+		<input name="email" id="email" type="email" class="form-control" placeholder="Correo electrónico ..."
+					 minlength="10" maxlength="150"
+					 value="<?php echo e($usuarios == null ? old('email') : $usuarios->email); ?>"/>
+		<?php echo $errors->first('email', '<span class="help-block">:message</span>'); ?>
+
+	</div>
+	<?php /* End Email */ ?>
+	
+
+	<?php /* Phone One */ ?>
+	<div class="form-group has-feedback <?php echo e($errors->has('phone_one') ? 'has-error' : ''); ?>">
+		<label class="control-label" for="inputError">Teléfono uno (*)</label>
+		<input name="phone_one" id="phone_one" type="number" class="form-control" placeholder="Teléfono uno ..."
+					 title="El campo solo debe contener números"
+					 value="<?php echo e($usuarios == null ? old('phone_one') : $usuarios->telefono_uno); ?>" />
+		<?php echo $errors->first('phone_one', '<span class="help-block">:message</span>'); ?>
+
+	</div>
+	<?php /* End Phone One */ ?>
+
+
+	<?php /* Phone Two */ ?>
+	<div class="form-group has-feedback <?php echo e($errors->has('phone_two') ? 'has-error' : ''); ?>">
+		<label class="control-label" for="inputError">Teléfono dos</label>
+		<input name="phone_two" id="phone_two" type="number" class="form-control" placeholder="Teléfono dos ..."
+					 title="El campo solo debe contener números"
+					 value="<?php echo e($usuarios == null ? old('phone_two') : $usuarios->telefono_dos); ?>"/>
+		<?php echo $errors->first('phone_two', '<span class="help-block">:message</span>'); ?>
+
+	</div> 
+	<?php /* End Phone Two */ ?>
+
+
+	<?php /* Formalism */ ?>
+	<div class="form-group has-feedback <?php echo e($errors->has('formalism') ? 'has-error' : ''); ?>">
+		<label>Formalismo (*)</label>
+		<select name="formalism" id="formalism" class="form-control select2" style="width: 100%;">
+			<?php if($usuarios == null): ?>
+				<option selected="selected" value="none" disabled>Seleccionar</option>
+				<option   value=".Sr">Señor.</option>
+				<option   value=".Sra">Señora.</option>
+			<?php elseif($usuarios->formalismo == ".Sr"): ?>
+				<option value=".Sr">Señor.</option>
+				<option value=".Sr">Señora.</option>
+			<?php else: ?>
+				<option value=".Sr">Señora.</option>
+				<option value=".Sr">Señor.</option>
+			<?php endif; ?>
+		</select>
+		<?php echo $errors->first('formalism', '<span class="help-block">:message</span>'); ?>
+
+	</div>
+	<?php /* End Formalism */ ?>
+
+
+	<?php /* Role */ ?>
+	<div class="form-group has-feedback <?php echo e($errors->has('rol') ? 'has-error' : ''); ?>">
+		<label>Rol (*)</label>
+		<select name="rol" id="rol" class="form-control select2" style="width: 100%;" 
+		onchange="activar(this.value)" >
+			<?php if($usuarios == null): ?>
+				<option id="rol-none" selected="selected" value="none" disabled>Seleccionar</option>
+				<?php if(auth()->user()->rol == "SUPER"): ?>
+					<option id="rol-admin"    value="SUPER">Súper administrador</option>
+				<?php endif; ?>
+				<option id="rol-admin"    value="ADMIN">Administrador</option>
+				<option id="rol-regular"  value="REGULAR">Regular</option>
+				<option id="rol-cba"      value="CBA">C.B.A</option>
+			<?php elseif($usuarios->rol == "SUPER"): ?>
+				<option id="rol-admin"    value="SUPER">Súper administrador</option>
+				<option id="rol-admin"    value="ADMIN">Administrador</option>
+				<option id="rol-regular"  value="REGULAR">Regular</option>
+				<option id="rol-cba"      value="CBA">C.B.A</option>
+			<?php elseif($usuarios->rol == "ADMIN"): ?>
+				<option id="rol-admin"    value="ADMIN">Administrador</option>
+				<?php if(auth()->user()->rol == "SUPER"): ?>
+					<option id="rol-admin"    value="SUPER">Súper administrador</option>
+				<?php endif; ?>
+				<option id="rol-regular"  value="REGULAR">Regular</option>
+				<option id="rol-cba"      value="CBA">C.B.A</option>
+			<?php elseif($usuarios->rol == "REGULAR"): ?>
+				<option id="rol-regular"  value="REGULAR">Regular</option>
+				<option id="rol-admin"    value="ADMIN">Administrador</option>
+				<?php if(auth()->user()->rol == "SUPER"): ?>
+					<option id="rol-admin"    value="SUPER">Súper administrador</option>
+				<?php endif; ?>
+				<option id="rol-cba"      value="CBA">C.B.A</option>
+			<?php else: ?>
+				<option id="rol-cba"      value="CBA">C.B.A</option>
+				<option id="rol-admin"    value="ADMIN">Administrador</option>
+				<?php if(auth()->user()->rol == "SUPER"): ?>
+					<option id="rol-admin"    value="SUPER">Súper administrador</option>
+				<?php endif; ?>
+				<option id="rol-regular"  value="REGULAR">Regular</option>
+			<?php endif; ?>
+		</select>
+		<?php echo $errors->first('rol', '<span class="help-block">:message</span>'); ?>
+
+	</div>
+	<?php /* End Role */ ?>
+	
+
+	<?php /* Photo Profile hidden*/ ?>
+	<input name="photo_profile" id="photo_profile" type="hidden" class="form-control"  maxlength="200"
+				 value="<?php echo e(asset('/img/avatar.png')); ?>" />
+
+	<div class="form-group">
+		<font size="2">Los campos marcados con (*) son obligatorios</font>
+	</div>
+
+</div>

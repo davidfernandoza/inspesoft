@@ -1,0 +1,109 @@
+<?php $__env->startSection('content'); ?>
+  <section class="content-header">
+    <h1 class="encuadre">
+      Actualizar
+      <small>Usuario</small>
+    </h1>
+    <ol class="breadcrumb encuadre">
+      <li><a href="<?php echo e(base_url('Inicio')); ?>"><i class="fa fa-fw fa-th"></i>Inicio</a></li>
+      <?php if($auth[0]->Rol == 'ADMINISTRADOR'): ?>
+      <li><a href="<?php echo e(base_url('Usuarios')); ?>">Usuarios</a></li>
+      <?php endif; ?>
+      <li>Actualizar Usuario</li>
+    </ol>
+  </section>
+
+  <section class="content">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="box box-header">
+          <div class="box-header with-border">
+            <h2 class="box-title">
+              <?php echo e($usuarios->primer_nombre." ".$usuarios->segundo_nombre." ".$usuarios->primer_apellido." ".$usuarios->segundo_apellido." "); ?><small><?php echo e(" (".$usuarios->id.")"); ?></small>
+            </h2>
+          </div>  
+          <br>
+          <div class="box-body">  
+            <form id="formID" role="form" action="<?php echo e(base_url('Usuarios/Actualizar')); ?>" method="POST" autocomplete="off">   
+
+              <?php /* ID */ ?>
+              <div class="form-group">
+                <label class="control-label" for="inputError"></i>Identificación (*)</label>
+                <input type="number" class="form-control" name="new_id" placeholder="Identificación ..." value="<?php echo e(isset($alertas[0]->Error) ? $old[0]->old['new_id'] : $usuarios->id); ?>" required>
+                <input type="hidden" name="id" value="<?php echo e($usuarios->id); ?>">
+              </div>
+
+              <?php /* Primer nombre */ ?>
+              <div class="form-group">
+                <label class="control-label" for="inputError"></i>Primer Nombre (*)</label>
+                <input type="text" class="form-control" name="primer_nombre" placeholder="Primer Nombre ..." value="<?php echo e(isset($alertas[0]->Error) ? $old[0]->old['primer_nombre'] : $usuarios->primer_nombre); ?>" required>
+              </div>
+
+              <?php /* Segundo nombre */ ?>
+              <div class="form-group">
+                <label class="control-label" for="inputError"></i>Segundo Nombre</label>
+                <input type="text" class="form-control" name="segundo_nombre" placeholder="Segundo Nombre ..." value="<?php echo e(isset($alertas[0]->Error) ? $old[0]->old['segundo_nombre'] : $usuarios->segundo_nombre); ?>">
+              </div>
+
+              <?php /* Primer apellido */ ?>
+              <div class="form-group">
+                <label class="control-label" for="inputError"></i>Primer Apellido (*)</label>
+                <input type="text" class="form-control" name="primer_apellido" placeholder="Primer Apellido ..." value="<?php echo e(isset($alertas[0]->Error) ? $old[0]->old['primer_apellido'] : $usuarios->primer_apellido); ?> " required>
+              </div>
+
+              <?php /* Segundo apellido */ ?>
+              <div class="form-group">
+                <label class="control-label" for="inputError"></i>Segundo Apellido</label>
+                <input type="text" class="form-control" name="segundo_apellido" placeholder="Segundo Apellido ..." value="<?php echo e(isset($alertas[0]->Error) ? $old[0]->old['segundo_apellido'] : $usuarios->segundo_apellido); ?>" >
+              </div>
+
+              <?php /* Email  */ ?>
+              <div class="form-group">
+                <label class="control-label" for="inputError"></i>Correo Electrónico (*)</label>
+                <input type="email" class="form-control" name="new_email" placeholder="Correo Electrónico ..." value="<?php echo e(isset($alertas[0]->Error) ? $old[0]->old['new_email'] : $usuarios->email); ?>" required>
+                <input type="hidden" name="email" value="<?php echo e($usuarios->email); ?>">
+              </div>
+
+              <?php /* Rol */ ?>
+              <?php if($auth[0]->Rol == "ADMINISTRADOR" && $auth[0]->Id != $id): ?>
+              <div class="form-group">
+                <label>Rol (*)</label>                 
+                <select name="rol" class="form-control " style="width: 100%;" required="">
+                  <option  <?php echo e($rolA); ?> value="ADMINISTRADOR">ADMINISTRADOR</option>
+                  <option  <?php echo e($rolR); ?> value="REGULAR">REGULAR</option>
+                </select>
+              </div>
+              <?php elseif($auth[0]->Rol == "ADMINISTRADOR"): ?>
+                <input type="hidden" name="rol" value="ADMINISTRADOR">
+              <?php else: ?>
+               <input type="hidden" name="rol" value="REGULAR">
+              <?php endif; ?>  
+             
+              <?php /* Botones  */ ?>
+              <div class="form-group">
+                <font size="2">Los campos marcados con (*) son obligatorios</font>
+              </div>
+              <div class="form-group">
+                <table align="center" class="table table-bordered text-center">
+                  <tr>
+                    <td width="250">
+                      <button type="submit" name="actualizar" class="btn btn-block btn-success btn-lg">Actualizar</button>
+                    </form>
+                  </td>
+                  <td width="250">
+                    <?php if($auth[0]->Rol == "ADMINISTRADOR"): ?>
+                    <a href="<?php echo e(base_url('Usuarios')); ?>" class="btn btn-block btn-danger btn-lg">Cancelar</a>
+                    <?php else: ?>
+                    <a href="<?php echo e(base_url('Inicio')); ?>" class="btn btn-block btn-danger btn-lg">Cancelar</a>
+                    <?php endif; ?>
+                  </td>
+                </tr>
+              </table>
+            </div>  
+          </div>
+        </div>
+      </div>
+    </section>  
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

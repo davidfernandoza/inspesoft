@@ -1,0 +1,77 @@
+<head>
+
+	<?php /* Metadata */ ?>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+	<?php /* Caracteres especiales */ ?>
+	<meta charset="utf-8"/>
+
+	<?php /* Tell the browser to be responsive to screen width */ ?>
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+
+
+	<?php /* Estilos */ ?>
+
+	<?php /* Bootstrap 3.3.6 */ ?>
+	<link rel="stylesheet" href="<?php echo e((base_url('resources/plugins/bootstrap/css/bootstrap.min.css'))); ?>"/>
+
+	<?php /* Jquery confirm 3 */ ?>
+	<link rel="stylesheet" href="<?php echo e((base_url('resources/plugins/jquery-confirm/jquery-confirm.css'))); ?>"/>
+
+	<?php /* Jasny Bootstrap */ ?>
+	<link rel="stylesheet" href="<?php echo e(base_url('resources/plugins/bootstrap/css/jasny-bootstrap.css')); ?>"/>
+
+	<?php /* Font Awesome */ ?>
+	<link rel="stylesheet" href="<?php echo e(base_url('resources/plugins/font-awesome/css/font-awesome.min.css')); ?>"/>
+
+	<?php /* Ionicons */ ?>
+	<link rel="stylesheet" href="<?php echo e(base_url('resources/plugins/ionicons/css/ionicons.min.css')); ?>"/>
+
+	<?php /* fullCalendar 2.2.5 */ ?>
+	<link rel="stylesheet" href="<?php echo e((base_url('resources/plugins/fullcalendar/fullcalendar.min.css'))); ?>">
+
+	<?php /* fullCalendar 2.2.5 print */ ?>
+	<link rel="stylesheet" href="<?php echo e((base_url('resources/plugins/fullcalendar/fullcalendar.print.css'))); ?>" media="print">
+
+	<?php /* Daterange picker */ ?>
+	<link rel="stylesheet" href="<?php echo e((base_url('resources/plugins/daterangepicker/daterangepicker.css'))); ?>">
+
+	<?php /* Bootstrap datepicker */ ?>
+	<link rel="stylesheet" href="<?php echo e(base_url('resources/plugins/datepicker/datepicker3.css')); ?>">
+
+	<?php /* iCheck */ ?>
+	<link rel="stylesheet" href="<?php echo e(base_url('resources/plugins/iCheck/square/blue.css')); ?>"/>
+
+	<?php /* iCheck for checkboxes and radio inputs */ ?>
+	<link rel="stylesheet" href="<?php echo e(base_url('resources/plugins/iCheck/all.css')); ?>">
+
+	<?php /* Bootstrap Color Picker */ ?>
+	<link rel="stylesheet" href="<?php echo e(base_url('resources/plugins/colorpicker/bootstrap-colorpicker.min.css')); ?>">
+
+	<?php /* Bootstrap time Picker */ ?>
+	<link rel="stylesheet" href="<?php echo e(base_url('resources/plugins/timepicker/bootstrap-timepicker.min.css')); ?>">
+
+	<?php /* Select2 */ ?>
+	<link rel="stylesheet" href="<?php echo e(base_url('resources/plugins/select2/select2.min.css')); ?>">
+
+	<?php /* Own */ ?>
+	<link rel="stylesheet" href="<?php echo e(base_url('resources/css/own/styles.css')); ?>"/>
+
+	<?php /* Data tables */ ?>
+	<link rel="stylesheet" href="<?php echo e(base_url('resources/plugins/dataTable/css/dataTables.bootstrap.min.css')); ?>"/>
+
+	<?php /* Theme style */ ?>
+	<link rel="stylesheet" href="<?php echo e(base_url('resources/css/AdminLTE.min.css')); ?>"/>
+
+	<?php /* Color skin */ ?>
+	<link rel="stylesheet" href="<?php echo e(base_url('resources/css/skins/skin-green.min.css')); ?>"/>
+
+	<?php /* Timepicki */ ?>
+	<link rel="stylesheet" href="<?php echo e((base_url('resources/plugins/clockpicker/css/timepicki.css'))); ?>"/>
+
+	<?php /* Favicon */ ?>
+	<link rel="shortcut icon" href="<?php echo e(base_url('resources/img/logos/favicon.ico')); ?>" type="image/x-icon"/>
+
+	<?php /* Titulo */ ?>
+	<title>Inspesoft | <?php echo e($title); ?></title>
+</head>

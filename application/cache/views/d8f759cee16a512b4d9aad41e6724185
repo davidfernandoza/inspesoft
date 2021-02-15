@@ -1,0 +1,226 @@
+<?php $__env->startSection('content'); ?>
+
+<section class="content-header">
+  <ol class="breadcrumb encuadre">
+    <li><a href="<?php echo e(base_url('Inicio')); ?>"><i class="fa fa-fw fa-th"></i>Inicio</a></li>
+    <li><a href="<?php echo e(base_url('Audiencias')); ?>">Audiencias</a></li>
+    <li>Ver Audiencia</li>
+  </ol>
+</section>
+<br>
+<section class="invoice">
+  <div class="row">
+    <div class="col-xs-12">
+      <h2 class="page-header">
+        <i class="fa fa fa-university"></i> Audiencia: <?php echo e($audiencia->id); ?>
+
+        <span class="pull-right"><strong>Conciliación: <?php echo e($audiencia->conciliacion); ?></strong></span>
+      </h2>
+    </div>
+  </div>
+  <div class="row invoice-info">
+    <div class="col-sm-3 invoice-col">
+
+      <?php /* Denunciante */ ?>
+      <?php if($audiencia->casos_id == NULL || $audiencia->casos_id == ''): ?>
+      <h4><b>Policía:</b></h4>
+      <br>
+      <?php else: ?>
+      <h4><b>Denunciante:</b></h4>      
+      <br>
+      <?php endif; ?>
+
+      <?php /* Asistencia */ ?>
+      <strong>Asistencia:</strong>
+      <br>
+      <span><?php echo e($audiencia->asistencia_d); ?></span>
+      <br>
+
+      <?php /* Escusas */ ?>
+      <?php if($audiencia->asistencia_d == 'NO' && $audiencia->escusa_d == 'NO'): ?> 
+      <?php if($expire == FALSE): ?>
+      <form role="form" action="<?php echo e(base_url('Audiencias/Escusar/D')); ?>" method="POST" autocomplete="off">
+        <div class="form-group"> 
+          <br>       
+          <label>Escusa: NO</label>         
+          <br>
+          <select  required name="escusa_d" class="form-control" style="width: 100%;" >
+            <option value="" selected="selected" disabled="">SELECCIONAR TIPO DE ESCUSA</option> 
+            <option value="VALIDA" >VALIDA</option>
+            <option value="INVALIDA" >INVALIDA</option>
+          </select>
+          <input type="hidden" name="id" value="<?php echo e($audiencia->id); ?>">
+        </div>
+        <div>
+          <button type="submit" name="actualizar" class="btn btn-block btn-success btn-lg">Actualizar</button>
+        </div>
+      </form>
+      <br>
+      <?php else: ?>
+      <strong>Escusa:</strong>
+      <br>
+      <span><?php echo e($audiencia->escusa_d); ?></span>
+      <br>
+      <?php endif; ?>
+      <?php elseif($audiencia->asistencia_d == 'NO' && $audiencia->escusa_d != 'NO'): ?>
+      <strong>Escusa:</strong>
+      <br>
+      <span><?php echo e($audiencia->escusa_d); ?></span>
+      <br>
+      <?php endif; ?>
+
+      <?php /* Argumentos */ ?>
+      <strong>Argumentos:</strong>
+      <br>
+      <span><?php echo e($audiencia->argumento_d); ?></span>
+      <br>
+
+      <?php /* Pruebas */ ?>
+      <strong>Pruebas:</strong>
+      <br>
+      <span><?php echo e($audiencia->pruebas_d); ?></span>
+      <br>
+
+      <?php if($audiencia->recursos_d != ''): ?>
+      <?php /* Recursos */ ?>
+      <strong>Recursos:</strong>
+      <br>
+      <span><?php echo e($audiencia->recursos_d); ?></span>
+      <br>
+      <?php endif; ?>
+    </div> 
+    <div class="col-sm-1 invoice-col"></div>
+    <div class="col-sm-3 invoice-col">
+
+     <?php /* Contraventor */ ?>
+     <?php if($audiencia->casos_id == NULL || $audiencia->casos_id == ''): ?>
+     <h4><b>Infractor:</b></h4>
+     <br>
+     <?php else: ?>
+     <h4><b>Contraventor:</b></h4>     
+     <br>
+     <?php endif; ?>
+
+     <?php /* Asistencia */ ?>
+     <strong>Asistencia:</strong>
+     <br>
+     <span><?php echo e($audiencia->asistencia_c); ?></span>
+     <br>
+
+     <?php /* Escusas */ ?>
+     <?php if($audiencia->asistencia_c == 'NO' && $audiencia->escusa_c == 'NO'): ?> 
+     <?php if($expire == FALSE): ?>
+     <form role="form" action="<?php echo e(base_url('Audiencias/Escusar/C')); ?>" method="POST" autocomplete="off">
+      <div class="form-group">
+        <br>
+        <label>Escusa: NO</label>          
+        <br>
+        <select  required name="escusa_c" class="form-control" style="width: 100%;" >
+          <option value="" selected="selected" disabled="">SELECCIONAR TIPO DE ESCUSA</option> 
+          <option value="VALIDA" >VALIDA</option>
+          <option value="INVALIDA" >INVALIDA</option>
+        </select>  
+        <input type="hidden" name="id" value="<?php echo e($audiencia->id); ?>"> 
+      </div>
+      <div>
+        <button type="submit" name="actualizar" class="btn btn-block btn-success btn-lg">Actualizar</button>
+      </div>
+    </form>
+    <br>
+    <?php else: ?>
+    <strong>Escusa:</strong>
+    <br>
+    <span><?php echo e($audiencia->escusa_c); ?></span>
+    <br>
+    <?php endif; ?>
+    <?php elseif($audiencia->asistencia_c == 'NO' && $audiencia->escusa_c != 'NO'): ?>
+    <strong>Escusa</strong>
+    <br>
+    <span><?php echo e($audiencia->escusa_c); ?></span>
+    <br>
+    <?php endif; ?>
+
+    <?php /* Argumentos */ ?>
+    <strong>Argumentos:</strong>
+    <br>
+    <span><?php echo e($audiencia->argumento_c); ?></span>
+    <br>
+
+    <?php /* Pruebas */ ?>
+    <strong>Pruebas:</strong>
+    <br>
+    <span><?php echo e($audiencia->pruebas_c); ?></span>
+    <br>
+
+    <?php /* Recursos */ ?>
+    <?php if($audiencia->recursos_c != ''): ?>    
+    <strong>Recursos:</strong>
+    <br>
+    <span><?php echo e($audiencia->recursos_c); ?></span>
+    <br>
+    <?php endif; ?>
+  </div> 
+
+  <div class="col-sm-1 invoice-col"></div>
+  <div class="col-sm-4 invoice-col">
+
+    <div class="table-responsive">
+     <h4><b>Información:</b></h4>
+     <table class="table">
+
+      <tr>
+        <th><b>Titulo:</b></th>
+        <td><?php echo e($audiencia->title); ?></td>
+      </tr>
+      <?php if($audiencia->casos_id == NULL || $audiencia->casos_id == ''): ?>
+      <tr>
+        <th><b>Resolución de comparendo:</b></th>
+        <td><a href="<?php echo e(base_url('Comparendos/Ver/'.$audiencia->comparendos_id)); ?>"><?php echo e($audiencia->comparendos_id); ?></td>
+        </tr>
+        <?php else: ?>
+        <tr>
+          <th><b>Caso:</b></th>
+          <td><a href="<?php echo e(base_url('Casos/Ver/'.$audiencia->casos_id)); ?>"><?php echo e($audiencia->casos_id); ?></a></td>
+        </tr>
+        <?php endif; ?> 
+        <tr>
+          <th><b>Evento:</b></th>
+          <td><a href="<?php echo e(base_url('Eventos/Ver/'.$audiencia->eventos_id)); ?>"><?php echo e($audiencia->eventos_id); ?></a></td>
+        </tr> 
+        <tr>
+          <th><b>Fecha de citación:</b></th>
+          <td id="fechaYhoraMoment" ><?php echo e($audiencia->start); ?></td>
+        </tr> 
+        <?php if($audiencia->asistencia_d == 'NO' || $audiencia->asistencia_c == 'NO'): ?>
+        <tr>
+          <th><b>Fecha de caducidad:</b></th>
+          <td class="fechaYhoraMoment1" ><?php echo e($fecha_caducidad); ?></td>
+        </tr>
+        <?php endif; ?>
+        <?php if($auth[0]->Rol == "ADMINISTRADOR"): ?>     
+        <tr>
+          <th><b>Acciones:</b></th>
+          <td>
+            <a href="<?php echo e(base_url('Audiencias/Editar/'.$audiencia->id)); ?>" class='btn btn-sm btn-warning fa fa-edit' title='Editar Detalles'></a>                                         
+          </td>
+        </tr>
+        <?php endif; ?> 
+      </table>
+    </div>
+  </div>
+</div>
+<br>
+<hr>
+
+<?php if($audiencia->detalles != null || $audiencia->detalles != ''): ?>
+<div class="row invoice-info">
+  <div class="col-sm-12 invoice-col">
+    <strong>Detalles:</strong>
+    <br>
+    <p><?php echo e($audiencia->detalles); ?> </p>
+  </div>
+</div> 
+<?php endif; ?> 
+</section>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

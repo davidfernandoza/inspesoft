@@ -1,0 +1,94 @@
+<?php $__env->startSection('content'); ?>
+
+<section class="content-header">
+	<h1 class="encuadre">
+		Comparendos
+		<small>Listado</small>
+	</h1>
+
+	<?php /* Menu Routes */ ?>
+	<ol class="breadcrumb encuadre">
+		<li><a href="<?php echo e(base_url('Inicio')); ?>"><i class="fa fa-fw fa-th"></i>Inicio</a></li>
+		<li class="active">Comparendos</li>
+	</ol><?php /* End Menu Routes */ ?>
+</section>
+
+<section class="content">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="box">
+				<div class="box-header">		
+					<div class="boton">
+						<a type="button" href="<?php echo e(base_url('Comparendos/Crear')); ?>" class="btn btn-success fa fa-plus">
+							<spam class="nuevo"> Nuevo</spam></a>
+						</div>
+
+						<br>
+						<div class="box-body">
+							<div class="table-responsive">
+								<table id="tb-tabla" class="table table-bordered table-striped">
+									<thead>
+										<tr>
+											<th>Numero de comparendo</th>																					
+											<th>Tipo</th>
+											<th>Numeral</th>
+											<th>Literal</th>
+											<th>Estado</th>										
+											<th>Acciones</th>
+										</tr>
+									</thead>
+									<tbody>
+										<?php foreach($comparendos as $comparendo): ?>
+										<tr align="center">
+											<td><?php echo e($comparendo->id); ?></td>											
+											<td><?php echo e($comparendo->tipo); ?></td>
+											<td><?php echo e($comparendo->numeral); ?></td>
+											<td><?php echo e($comparendo->literal); ?></td>
+											<?php if($comparendo->estado == 'CONTRA'): ?>
+											<td>FALLO EN CONTRA</td>
+											<?php elseif($comparendo->estado == 'FAVOR'): ?>
+											<td>FALLO A FAVOR</td>
+											<?php else: ?>
+											<td><?php echo e($comparendo->estado); ?></td>
+											<?php endif; ?>		
+											<td>												
+												<table>
+													<tr>
+														<td>
+															<a href="<?php echo e(base_url('Comparendos/Ver/'.$comparendo->id)); ?>" class='btn btn-sm btn-info fa fa-eye' title='Ver'></a>
+														</td>
+														<?php if($auth[0]->Rol == "ADMINISTRADOR"): ?>																
+														<td>
+															<a href="<?php echo e(base_url('Comparendos/Editar/'.$comparendo->id)); ?>" class='btn btn-sm btn-warning fa fa-edit' title='Editar'></a>
+														</td>											
+														<?php endif; ?>
+													</tr>
+												</table>
+											</td>
+										</tr>
+										<?php endforeach; ?>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>					
+				</div>
+			</div>
+		</div>		
+	</section>		
+	<?php $__env->stopSection(); ?>
+
+
+
+
+
+
+
+
+
+
+	
+
+	
+
+<?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,0 +1,55 @@
+<?php $__env->startSection('content'); ?>
+
+
+<section class="content-header">
+  <h1 class="encuadre">
+    Citaciones
+    <small>Calendario</small>
+  </h1>
+
+  <?php /* Menu Routes */ ?>
+  <ol class="breadcrumb encuadre">
+    <li><a href="<?php echo e(base_url('Inicio')); ?>"><i class="fa fa-fw fa-th"></i>Inicio</a></li>
+    <li class="active">Citaciones</li>
+  </ol><?php /* End Menu Routes */ ?>
+</section>
+
+<?php /* Calendar */ ?>
+<section class="content">
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-xs-10">
+      <div class="box">
+        <div id="calendar" ></div>   
+      </div>       
+    </div>
+    <div class="col-md-1"></div>
+  </div>    
+</section>  
+
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title h3">Crear evento</h4>
+      </div>
+      <div class="modal-body">
+        <p>Some text in the modal.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

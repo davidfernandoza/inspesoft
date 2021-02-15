@@ -1,0 +1,115 @@
+<?php $__env->startSection('content'); ?>
+
+<section class="content-header">
+	<h1 class="encuadre">
+		Casos
+		<small>Listado</small>
+	</h1>
+
+	<?php /* Menu Routes */ ?>
+	<ol class="breadcrumb encuadre">
+		<li><a href="<?php echo e(base_url('Inicio')); ?>"><i class="fa fa-fw fa-th"></i>Inicio</a></li>
+		<li class="active">Casos</li>
+	</ol><?php /* End Menu Routes */ ?>
+</section>
+
+<section class="content">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="box">
+				<div class="box-header">		
+					<div class="boton">
+						<a type="button" href="<?php echo e(base_url('Casos/Crear')); ?>" class="btn btn-success fa fa-plus">
+							<spam class="nuevo"> Nuevo</spam></a>
+						</div>
+
+						<br>
+						<div class="box-body">
+							<div class="table-responsive">
+								<table id="tb-tabla" class="table table-bordered table-striped">
+									<thead>
+										<tr>
+											<th>Radicado</th>
+											<th>Asunto</th>											
+											<th>Fecha de inicio</th>
+											<th>Fecha de cierre</th>
+											<th>Estado</th>
+											<th>N° Folio</th>
+											<th>N° Caja</th>												
+											<th>Acciones</th>
+										</tr>
+									</thead>
+									<tbody>
+										<?php foreach($casos as $caso): ?>
+										<tr align="center">
+											<td><?php echo e($caso->id); ?></td>
+											<td><?php echo e($caso->asunto); ?></td>
+											<td><?php echo e($caso->fecha_inicio); ?></td>
+											<td><?php echo e($caso->fecha_cierre); ?></span></td>
+											<td><?php echo e($caso->estado); ?></td>		
+											<td><?php echo e($caso->num_folios); ?></td>
+											<td><?php echo e($caso->num_caja); ?></td>								
+											<td>
+												<table>
+													<tr>
+														<td>
+															<a href="<?php echo e(base_url('Casos/Ver/'.$caso->id)); ?>" class='btn btn-sm btn-info fa fa-eye' title='Ver'></a>
+														</td>
+														<?php if($caso->estado == 'ACTIVO'): ?>
+														<?php if($auth[0]->Rol == "ADMINISTRADOR"): ?>																
+														<td>
+															<a href="<?php echo e(base_url('Casos/Editar/'.$caso->id)); ?>" class='btn btn-sm btn-warning fa fa-edit' title='Editar'></a>
+														</td>									
+														<?php endif; ?>
+
+
+
+														<?php if($caso->tipo == NULL || $caso->tipo != 'PRIMERA INSTANCIA'): ?>
+														<td>
+															<a href="<?php echo e(base_url('Fallos/Crear/'.$caso->id)); ?>" class='btn btn-sm btn-danger fa  fa-legal' title='Fallo'></a>
+														</td>    
+														<?php else: ?>
+														<td>
+															<a class='btn btn-sm btn-danger fa  fa-legal' title='Fallo' disabled></a>
+														</td>
+														<?php endif; ?>
+														<?php else: ?>
+														<?php if($auth[0]->Rol == "ADMINISTRADOR"): ?>																
+														<td>
+															<a class='btn btn-sm btn-warning fa fa-edit' title='Editar' disabled></a>
+														</td>									
+														<?php endif; ?>
+														<td>
+															<a class='btn btn-sm btn-danger fa  fa-legal' title='Fallo' disabled></a>
+														</td>
+														<?php endif; ?>	
+													</tr>
+												</table>
+											</td>
+										</tr>
+										<?php endforeach; ?>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>					
+				</div>
+			</div>
+		</div>		
+	</section>		
+	<?php $__env->stopSection(); ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
